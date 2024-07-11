@@ -1,5 +1,9 @@
-package co.scastillos.foro_hub2.entity;
+package co.scastillos.foro_hub2.dominio.curso;
 
+
+import co.scastillos.foro_hub2.dominio.estudiante.Estudiante;
+import co.scastillos.foro_hub2.dominio.profesor.Profesor;
+import co.scastillos.foro_hub2.dominio.topic.Topic;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +21,8 @@ public class Curso {
 
     @Column(name = "nombre_cruso")
     private String nombreCurso;
+
+    private String descripcion;
 
     @ManyToOne
     private Profesor profesor;

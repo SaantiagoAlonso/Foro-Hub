@@ -1,14 +1,20 @@
-package co.scastillos.foro_hub2.entity;
+package co.scastillos.foro_hub2.dominio.usuario;
 
+import co.scastillos.foro_hub2.dominio.respuesta.Respuesta;
+import co.scastillos.foro_hub2.dominio.topic.Topic;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario implements UserDetails {
@@ -32,11 +38,13 @@ public class Usuario implements UserDetails {
     private List<Topic> topicList;
 
     @OneToMany(targetEntity = Respuesta.class,mappedBy = "autor")
-    private List<Respuesta> Misrespuestas;
+    private List<Respuesta> respuestas;
 
-    public Usuario(String nombre, Integer edad, int opcion) {
+    public Usuario(String nombre,String clave,String correo, Integer edad, int opcion) {
         this.nombre = nombre;
         this.edad = edad;
+        this.clave = clave;
+        this.correo = correo;
         if (opcion == 1) {
             this.rol = Rol.ESTUDIANTE;
         }else{
@@ -46,7 +54,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Stream.of((GrantedAuthority) () -> rol.name()).collect(Collectors.toList());
     }
 
     @Override
