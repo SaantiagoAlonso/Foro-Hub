@@ -30,6 +30,8 @@ Esto asegura que solo los usuarios autenticados puedan crear y responder a tópi
 
 ![image](https://github.com/user-attachments/assets/70b3e0ae-bb6a-4bb5-9220-9d909bd4f361)
 
+![image](https://github.com/user-attachments/assets/d9ff5db5-d16d-424e-b500-4d2f6bf5993f)
+
 
 
 
